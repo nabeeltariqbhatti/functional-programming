@@ -1,0 +1,40 @@
+package streams;
+
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class _Stream {
+
+
+
+    public static void main(String[] args) {
+
+
+        List<Person> people = List.of(
+
+                new Person("Rashid", Gender.MALE),
+                new Person("Angelina ",Gender.FEMALE),
+                new Person("Khursheed", Gender.MALE),
+                new Person("Alex", Gender.MALE),
+                new Person("Aisha", Gender.FEMALE)
+
+        );
+
+        //stream use case with filter
+
+        Set<Gender> genders = people.stream().map(person -> person.getGender()).collect(Collectors.toSet());
+        System.out.println(genders);
+
+        people.stream().map(person -> person.getGender()).collect(Collectors.toSet()).forEach(System.out::println);
+//        Predicate<Person> checkGender = person -> person.getGender() == (Gender.FEMALE);
+//        List<Person> females = people.stream().filter(person -> checkGender.test(person)).genders(Collectors.toList());
+//
+//
+//        System.out.println(females);
+
+
+
+    }
+}
