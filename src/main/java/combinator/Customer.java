@@ -2,6 +2,7 @@ package combinator;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class Customer {
 
@@ -55,4 +56,6 @@ public class Customer {
     public String getNumber() {
         return number;
     }
+
+
 }

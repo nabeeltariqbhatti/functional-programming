@@ -1,6 +1,10 @@
 package combinator;
 
 import java.time.LocalDate;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import static combinator.CustomerRegistrationValidator.*;
 
 public class Main {
 
@@ -10,14 +14,20 @@ public class Main {
 
                 "Alice",
                 "alice@email.com",
-               LocalDate.of(2000,12,10),
+               LocalDate.of(2020,12,10),
                 "03076367006"
 
 
 
         );
-        if(new CustomerValidator().isValid(customer)){
-            System.out.println("This customer with name " + customer.getName() + " is  valid");
+
+       ValidationResult result =  isEmailValid()
+                .and(isAdult())
+                .and(isNumberValid()).apply(customer);
+        if(result == ValidationResult.SUCCESS) {
+            System.out.println(customer);
+        }else {
+          throw  new IllegalStateException(result.name());
         }
 
 
