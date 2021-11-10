@@ -40,19 +40,22 @@ public class _Stream {
 
 
       //  people.stream().map(person -> person.getName()).mapToInt(len -> len.length()).forEach(System.out::println);
-   Predicate<Person> checkGender = person -> person.getGender() == (Gender.FEMALE);
- List<Person> females = people.stream().filter(person -> checkGender.test(person)).collect(Collectors.toList());
+//   Predicate<Person> checkGender = person -> person.getGender() == (Gender.FEMALE);
+// List<Person> females = people.stream().filter(person -> checkGender.test(person)).collect(Collectors.toList());
 //
 //
 //        System.out.println(females);
 
 
+//
+//       boolean containseOnlyFemales =  people.stream()
+//                .anyMatch(person -> person.getGender().equals(Gender.FEMALE));
+//
+//
+//        System.out.println(containseOnlyFemales);
 
-       boolean containseOnlyFemales =  people.stream()
-                .anyMatch(person -> person.getGender().equals(Gender.FEMALE));
 
 
-        System.out.println(containseOnlyFemales);
     }
 
 
