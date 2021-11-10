@@ -7,7 +7,13 @@ import java.util.function.Function;
 public interface CustomerRegistrationValidator extends Function<Customer,ValidationResult> {
 
     static  CustomerRegistrationValidator isEmailValid() {
-        return customer -> customer.getEmail().contains("@") ? ValidationResult.SUCCESS :ValidationResult.EMAIL_IS_NOT_VALID;
+        return customer ->{
+
+            System.out.println("running email validation");
+            return  customer.getEmail().contains("@") ? ValidationResult.SUCCESS :ValidationResult.EMAIL_IS_NOT_VALID;
+        };
+
+
     }
 
     static  CustomerRegistrationValidator isAdult() {
