@@ -38,6 +38,9 @@ public class Main {
     public static void main(String args[]){
 
 
+
+
+
         List<Person> people = List.of(
 
                 new Person("Rashid", Gender.MALE),
