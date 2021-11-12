@@ -4,9 +4,11 @@ public class GuessGameLauncher {
 
     public static void main(String[] args) {
 
-        GuessGame guessGame = new GuessGame();
 
-        guessGame.startGame();
+                GuessGame game = new GuessGame();
+                game.startGame();
 
-    }
+        }
+
+
 }

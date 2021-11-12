@@ -1,16 +1,10 @@
 package guessgame;
 
 public class Player {
-
-    private   final Integer number ;
-
-
-    Player(Integer number){
-        this.number = number;
-    }
-    public int guess(){
-
-
-        return  number;
+    int number = 0; // where the guess goes
+    public void guess() {
+        number = (int) (Math.random() * 10);
+        System.out.println("I’m guessing "
+                + number);
     }
 }

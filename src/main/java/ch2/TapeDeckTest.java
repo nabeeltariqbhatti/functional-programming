@@ -1,5 +1,7 @@
 package ch2;
 
+import java.util.Scanner;
+
 class TapeDeck {
     boolean canRecord = false;
     void playTape() {
@@ -15,6 +17,11 @@ public class TapeDeckTest{
 
 
     public static void main(String[] args){
+        GameHelper gameHelper = new GameHelper();
+
+      String  s =   gameHelper.getUserInput("Input");
+
+        System.out.println(s);
 
         TapeDeck t = new TapeDeck();
 
@@ -25,5 +32,11 @@ public class TapeDeckTest{
         t.playTape();
 
         t.recordTape();
+         s = null;
+
+        Scanner scanner = new Scanner(System.in);
+
+         s = scanner.nextLine();
+        System.out.println(s);
     }
 }
