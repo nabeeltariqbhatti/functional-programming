@@ -12,6 +12,8 @@ public class FP02Functional {
 
 
         courses.stream().filter(course -> course.contains("Spring")).forEach(System.out::println);
+
+
     }
 
 
