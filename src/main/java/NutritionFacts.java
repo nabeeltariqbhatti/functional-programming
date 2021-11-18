@@ -1,0 +1,2 @@
+public class NutritionFacts {
+}
