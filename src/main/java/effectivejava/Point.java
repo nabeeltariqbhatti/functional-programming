@@ -1,5 +1,8 @@
 package effectivejava;
 
+import java.awt.*;
+import java.util.Objects;
+
 public class Point {
 
     private  final Integer x;
@@ -17,6 +20,19 @@ public class Point {
     public Integer getY() {
         return y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return Objects.equals(getX(), point.getX()) && Objects.equals(getY(), point.getY());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
+    }
 }
 
 
@@ -33,6 +49,19 @@ class PointWithColors extends  Point{
     public String getColor() {
         return color;
     }
+
+    // Broken - violates transitivity!
+    @Override public boolean equals(Object o) {
+        if (!(o instanceof Point))
+            return false;
+// If o is a normal Point, do a color-blind comparison
+        if (!(o instanceof PointWithColors))
+            return o.equals(this);
+// o is a ColorPoint; do a full comparison
+        return super.equals(o) && ((PointWithColors) o).color == color;
+    }
+
+
 }
 
 
@@ -58,22 +87,19 @@ class Main{
     public static void main(String[] args) {
 
 
-        Point p = new Point(12,30);
+        PointWithColors p1 = new PointWithColors(1, 2, Color.RED.toString());
+        Point p2 = new Point(1, 2);
+        PointWithColors p3 = new PointWithColors(1, 2, Color.BLUE.toString());
 
-        System.out.println("Point class " + p.getX() + " " + p.getY());
+        System.out.println(p1.equals(p3));
 
-
-
-        PointWithColors pointWithColors = new PointWithColors(40,50,"Black");
-
-
-        System.out.println(pointWithColors.getX() + " " + pointWithColors.getY() + " " + pointWithColors.getColor());
-
-
-        CaseInsensitiveString caseInsensitiveString = new CaseInsensitiveString("polish");
-        CaseInsensitiveString caseInsensitiveString2 = new CaseInsensitiveString("Polishff");
-
-        System.out.println(caseInsensitiveString.equals(caseInsensitiveString2));
+//        System.out.println(pointWithColors.getX() + " " + pointWithColors.getY() + " " + pointWithColors.getColor());
+//
+//
+//        CaseInsensitiveString caseInsensitiveString = new CaseInsensitiveString("polish");
+//        CaseInsensitiveString caseInsensitiveString2 = new CaseInsensitiveString("Polishff");
+//
+//        System.out.println(caseInsensitiveString.equals(caseInsensitiveString2));
     }
 }
 
