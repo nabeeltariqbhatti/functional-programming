@@ -1,7 +1,9 @@
 package effectivejava;
 
 import java.awt.*;
-import java.util.Objects;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
 
@@ -83,8 +85,86 @@ class CaseInsensitiveString{
         return false;
     }
 }
+
+// List-based Chooser - typesafe
+ class Chooser<T> {
+    private final List<T> choiceList;
+    public Chooser(Collection<T> choices) {
+        choiceList = new ArrayList<>(choices);
+    }
+    public T choose() {
+        Random rnd = ThreadLocalRandom.current();
+        return choiceList.get(rnd.nextInt(choiceList.size()));
+    }
+
+    @Override
+    public String toString() {
+        return "Chooser{" +
+                "choiceList=" + choiceList +
+                '}';
+    }
+}
+abstract class Car
+{
+    String model;
+    String brand;
+    public abstract void addFeatures();
+    Car()
+    {
+        this.model = "X5";
+        this.brand = "BMW";
+    }
+}
+class SportCar extends Car
+{
+    boolean nitro;
+    @Override
+    public void addFeatures()
+    {
+        this.nitro = true;
+    }
+    public void showDetail()
+    {
+        System.out.println("Model :"+ model);
+        System.out.println("Brand :"+ brand);
+        System.out.println("Nitro :"+ nitro);
+    }
+}
+
+
 class Main{
+
+
     public static void main(String[] args) {
+
+
+
+//        Object[] objectArray = new Long[1];
+//        objectArray[0] = "I don't fit in"; // Throws ArrayStoreException
+
+        // Won't compile!
+
+
+        Chooser<Integer> chooser = new Chooser<Integer>(List.of(1,2));
+
+        chooser.choose();
+
+        System.out.println(chooser);
+        System.out.println(chooser);
+        System.out.println(chooser);
+
+
+
+
+        List<Object> ol = new ArrayList<>(); // Incompatible types
+        ol.add("I don't fit in");
+
+ // Why generic array creation is illegal - won't compile!
+//        List<String>[] stringLists = new List<String>[1]; // (1)
+//        List<Integer> intList = List.of(42); // (2)
+//        Object[] objects = stringLists; // (3)
+//        objects[0] = intList; // (4)
+//        String s = stringLists[0].get(0); // (5)
 
 
         PointWithColors p1 = new PointWithColors(1, 2, Color.RED.toString());
@@ -100,6 +180,8 @@ class Main{
 //        CaseInsensitiveString caseInsensitiveString2 = new CaseInsensitiveString("Polishff");
 //
 //        System.out.println(caseInsensitiveString.equals(caseInsensitiveString2));
+
+
     }
 }
 

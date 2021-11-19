@@ -3,30 +3,27 @@ package effectivejava;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
- class Stack {
-    private Object[] elements;
+public class Stack<E> {
+    private E[] elements;
     private int size = 0;
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
     public Stack() {
-        elements = new Object[DEFAULT_INITIAL_CAPACITY];
+        elements =(E[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
-    public void push(Object e) {
+    public void push(E e) {
         ensureCapacity();
         elements[size++] = e;
     }
-    public Object pop() {
+    public E pop() {
         if (size == 0)
             throw new EmptyStackException();
-
-        Object result = elements[--size];
-        elements[size] = null;
-
+        E result = elements[--size];
+        elements[size] = null; // Eliminate obsolete reference
         return result;
     }
-    /**
-     * Ensure space for at least one more element, roughly
-     * doubling the capacity each time the array needs to grow.
-     */
+    public boolean isEmpty() {
+        return size == 0;
+    }
     private void ensureCapacity() {
         if (elements.length == size)
             elements = Arrays.copyOf(elements, 2 * size + 1);
@@ -37,16 +34,18 @@ class StackTestDrive{
 
     public static void main(String[] args) {
 
-        Stack stack = new Stack();
+        Stack<int[]> stack = new Stack<>();
 
-        int i =0;
-        while(true){
+        stack.push(new int[]{1,23,45,6});
 
-            stack.push( Math.random());
+        System.out.println(stack.pop());
 
-            if(i ==1000) break;
-            i++;
-        }
+//        for (String arg : args)
+//            stack.push(arg);
+//        while (!stack.isEmpty())
+//            System.out.println(stack.pop().toUpperCase());
+
+
 
 
     }
