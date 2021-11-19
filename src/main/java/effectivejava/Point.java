@@ -181,6 +181,7 @@ class Main{
 //
 //        System.out.println(caseInsensitiveString.equals(caseInsensitiveString2));
 
+        "Hello world!".chars().forEach(x -> System.out.print((char) x));
 
     }
 }
