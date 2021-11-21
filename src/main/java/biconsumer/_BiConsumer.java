@@ -1,10 +1,12 @@
 package biconsumer;
 
+import java.util.Objects;
 import java.util.function.BiConsumer;
 
 public class _BiConsumer {
 
     public static void main(String[] args) {
+
 
 
          BiConsumer<Customer,Boolean> biConsumer = (customer, status) -> {
