@@ -22,6 +22,17 @@ public class MainExample {
 
         Map<Integer, Integer> _map = new HashMap<>();
 
+        List<String> _list = new ArrayList<>();
+        _list.addAll(List.of("okay","okay2","okay"));
+
+
+        Iterator<String> _list_it = _list.iterator();
+
+
+        while (_list_it.hasNext()){
+            System.out.println(_list_it.next());
+        }
+
 
 
 
